@@ -1,0 +1,35 @@
+modules:
+  macro:
+    - key: huddle-hello-world
+      resource: main
+      resolver:
+        function: resolver
+      title: Huddle
+      description: Start a video huddle with live transcription
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/hello-world/build
+permissions:
+  scopes:
+    - storage:app
+    - read:confluence-content.all
+    - write:confluence-content
+  external:
+    fetch:
+      backend:
+        - '*.atlassian.net'
+      client:
+        - 'https://jitsi.riot.im'
+        - 'https://*.riot.im'
+    frames:
+      - 'https://jitsi.riot.im'
+      - 'https://*.riot.im'
+app:
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/e6207471-41b0-4064-b980-1ab256b50ada
